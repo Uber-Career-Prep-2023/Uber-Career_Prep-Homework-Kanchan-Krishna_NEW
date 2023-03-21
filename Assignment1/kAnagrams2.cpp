@@ -50,6 +50,7 @@ bool kAnagrams(string &word1, string &word2, int &k)
         return true;
     }
     return false;
+    //count either the extras or the deficits 
 }
 
 int main()
