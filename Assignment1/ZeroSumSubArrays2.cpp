@@ -36,4 +36,3 @@ int main()
 }
 
 // The brute force approach took me 10 minutes
-// The optimal approach using hashing took me 30 minutes
