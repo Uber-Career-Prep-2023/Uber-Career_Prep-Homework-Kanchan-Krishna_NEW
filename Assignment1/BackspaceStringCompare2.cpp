@@ -5,11 +5,8 @@ using namespace std;
 /*
 Time Complexity: Not sure - O(n^2)
 Space Complexity: O(1)
-Time it took me: 20 minutes
+Technique: Looping
 */
-// solve it with a stack or a vector using pop back function
-// TC of substring is O(n)
-// use two right pointers and compare both strings at the same time; skip # number of characters so if you have abcdef###xyz skip 3 hashtags so skip 3 chars for def
 
 bool containsHashtag(string &s)
 {
@@ -61,3 +58,4 @@ int main()
         cout << "the resulting text is not the same!";
     }
 }
+//Time it took me: 20 minutes
