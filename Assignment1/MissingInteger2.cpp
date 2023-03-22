@@ -10,28 +10,18 @@ Space Complexity:
 // cant you also check if the index (1-based) does not match up with the value of the element at the index? if it does not, you know you are missing an integer and you should return the current index
 // for ex: [1, 2, 3, 4, 6, 7] has corresponding indices 1, 2, 3, 4, 5, 6 and there is a mismatch at index 5 so return 5
 // this would be O(n) though; does not surpass binary search
-int missingInteger(vector<int> arr, int &n)
-{
-    int left_ptr = 1;
-    int right_ptr = arr.size() - 1;
-    for (int i = 1; i <= arr.size(); i++)
-    {
-        int middle_idx = (left_ptr + right_ptr) / 2;
-        if (middle_idx == i)
-        {               // no missing integer yet
-            left_ptr++; // not sure
-        }
-        else if (middle_idx > i)
-        {
-            left = mid - 1;
-        }
-        else if (middle_idx < i)
-        {
-            right = mid + 1;
+int missingInteger(vector<int> arr, int &n) {
+    int left = 0, int right = arr.size() - 1;
+    // n=3, arr=[1,2] : handle upfront
+    while(left<right){
+        mid = (left+right)/2;
+        if (arr[mid]==mid+1){ //everything from left to mid is correct 
+            left=mid+1;
+        }else{
+            right=mid;
         }
     }
 }
-
 /*
 Technique: Sort then solve
 Time Complexity: O(n) where n is the # of eles in arr
