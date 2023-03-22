@@ -24,8 +24,15 @@ bool kAnagrams(string &word1, string &word2, int &k)
     {
         word2_freq_map[ch2]++;
     }
+    int deficit_count = 0; 
+    for (auto entry : word2_freq_map) {
+        if (word1_freq_map.find(entry.first) != word1_freq_map.end()) {
+            deficit_count++; 
+        }
+    return deficit_count == k; 
+    //old way of doing so:
     // how do I know what letters are the deficits...maps are sorted by default...loop through the map that has more entries and keep a count of how many times a letter in the map that has more entries does NOT appear in the map that has fewer entries
-    map<char, int> to_loop_through;
+    /*map<char, int> to_loop_through;
     map<char, int> check;
     if (word1_freq_map.size() >= word2_freq_map.size())
     {
@@ -49,7 +56,7 @@ bool kAnagrams(string &word1, string &word2, int &k)
     {
         return true;
     }
-    return false;
+    return false;*/
     //count either the extras or the deficits 
 }
 
