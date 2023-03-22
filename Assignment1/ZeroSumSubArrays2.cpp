@@ -8,6 +8,36 @@ Space Complexity: O(1)
 Technique Used: Just regular solving
 */
 
+//optimized
+/*
+[8, -5, 0, -2, 3, -4]
+0 8 3 3 1 4 0 -> make sure to count both pairs (2 lefts and when you have 1 right (value 3)) 
+Sum of subarray[l,r] = prefix_sum[r]-prefix_sum[l-1] (0<=l<=r<n)
+A subarray [l,r] has sum 0 if prefix_sum[r]==prefix_sum[l-1]
+*/
+
+int zeroSumSubArray(vector<int> &v) {
+    //generate the prefix sum arr
+    vector<int> prefix_sum(v.size() + 1); 
+    prefix_sum.push_back(0); 
+    int running_sum = 0; 
+    for (int i = 0; i < v.size(); i++) {
+        running_sum += v[i]; 
+        prefix_sum.push_back(running_sum); 
+    }
+    map<int, int> m; 
+    for (auto ele : prefix_sum) {
+        m[ele]++; 
+    }
+    int count = 0; 
+    for (auto entry : m) {
+        if (m.find(entry.first)) != m.end()) { //means you have seen this prefix sum before 
+            count+= entry.second;
+        }
+    }
+    return count; 
+}
+
 // brute force solution
 int zeroSumSubArray(vector<int> &v)
 {
