@@ -31,7 +31,16 @@ Space Complexity: O(1)
 // O(n) approach
 vector<int> &dedupArray(vector<int> &arr)
 {
-    int j = 0; // store idx of the next unique element
+    //j is idx of last unique 1element we have encountered; assume we have already processed the first element 
+    int j = 0; 
+    for (int i = 1; i < arr.size() - 1; i++) {
+      if (arr[i - 1] != arr[i]) { //no duplicate 
+        j++; 
+        arr[j] = arr[i];
+      }
+    }
+    arr.resize(j); 
+    /*int j = 0; // store idx of the next unique element
     for (int i = 0; i < arr.size() - 1; i++)
     {
         if (arr[i + 1] != arr[i])
@@ -42,7 +51,7 @@ vector<int> &dedupArray(vector<int> &arr)
     }
     cout << "Hello";
     arr[j] = arr[arr.size() - 1];
-    j++;
+    j++;*/
 }
 
 int main()
