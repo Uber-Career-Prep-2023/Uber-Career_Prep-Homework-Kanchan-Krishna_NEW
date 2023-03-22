@@ -43,7 +43,17 @@ Space Complexity: O(1)
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    vector<int> input{1, 2, 3, 4, 6, 7};
+    cout << MissingInteger(input, 7) << endl;
+    
+    input = {1};
+    cout << MissingInteger(input, 2) << endl;
+    
+    input = {1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12};
+    cout << MissingInteger(input, 12) << endl;
+    
+    input = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    cout << MissingInteger(input, 12) << endl;
 }
 
 // This question took me 15 min for the first approach (optimized) and 5 min for the second approach
