@@ -4,8 +4,7 @@
 using namespace std;
 class DoublyLinkedList {
 public:
-    struct Node
-    {
+    struct Node {
         // used Base Member Initialization List
         Node(int data = 0, Node *next = nullptr) : data(data), next(next) {}
         int data;
@@ -13,7 +12,7 @@ public:
         Node* prev; 
     };
     // constructor
-    DoublyLinkedList() : head(nullptr), tail(nullptr) {}
+    DoublyLinkedList() : head(nullptr) {}
     // destructor
     ~DoublyLinkedList();
     // prints the entire list (used for test cases)
@@ -27,7 +26,6 @@ public:
     int length();
     Node *reverseIterative();
     Node *reverseRecursive();
-
 private:
     Node *head;
 };

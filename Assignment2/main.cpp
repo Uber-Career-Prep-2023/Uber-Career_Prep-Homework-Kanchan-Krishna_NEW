@@ -13,5 +13,21 @@ int main() {
     ll.printList(); 
     ll.deleteNode(nullptr); 
     ll.printList(); 
-    // Test for Q2
+    //Test for Q2
+    DoublyLinkedList dll; 
+    dll.insertAtFront(3);
+    dll.insertAtFront(2);
+    dll.insertAtFront(1);
+    dll.printList(); 
+    dll.reverseIterative(); 
+    dll.printList();
+    // Test for Q3
+    // Test for Q4
+    // Test for Q5
+    // Test for Q6
+    // Test for Q7
+    // Test for Q8
+    // Test for Q9
+    // Test for Q10
+    // Test for Q11
 }

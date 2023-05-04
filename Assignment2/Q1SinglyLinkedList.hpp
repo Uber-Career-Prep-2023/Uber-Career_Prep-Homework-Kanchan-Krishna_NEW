@@ -12,7 +12,7 @@ class SinglyLinkedList {
             Node* next;
         };
         //constructor 
-        SinglyLinkedList() : head(nullptr), tail(nullptr) {}
+        SinglyLinkedList();
         //destructor 
         ~SinglyLinkedList();
         //prints the entire list (used for test cases)
