@@ -16,7 +16,7 @@ class SinglyLinkedList {
         //destructor 
         ~SinglyLinkedList();
         //prints the entire list (used for test cases)
-        void printList(const Node* head);
+        void printList(Node* head);
         Node* insertAtFront(int val);
         void insertAtBack(int val);
         void insertAfter(int val, Node*& loc);

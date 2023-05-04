@@ -1,5 +1,6 @@
 #include "Q1SinglyLinkedList.hpp"
 #include <bits/stdc++.h>
+using namespace std; 
 
 //inserts a new node at the back of the singly linked list 
 //time complexity: O(N) where N is the # of nodes in the SLL; O(1) if only 1 node in SLL
@@ -116,6 +117,18 @@ int SinglyLinkedList::length() {
         curr = curr->next;
     }
     return length;
+}
+
+//time complexity: O(N) where N is the # of nodes in the SLL
+void SinglyLinkedList::printList(Node* head) {
+    cout << "Printing Singly Linked List" << endl; 
+    //1 -> 2 -> 3
+    Node* curr = head; 
+    while (curr) {
+        cout << "Current node: " << curr->val << endl; 
+        curr = curr->next; 
+    }
+    cout << "Done Printing Singly Linked List" << endl;
 }
 
 // reverses the singly linked list iteratively
