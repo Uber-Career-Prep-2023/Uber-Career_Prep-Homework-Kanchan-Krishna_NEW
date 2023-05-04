@@ -1,29 +1,35 @@
-#include "Q1SinglyLinkedList.h"
-#include <bits/stdc++.hpp>
+#include "Q1SinglyLinkedList.hpp"
+#include <bits/stdc++.h>
 
 //inserts a new node at the back of the singly linked list 
+//time complexity: O(N) where N is the # of nodes in the SLL; O(1) if only 1 node in SLL
 void SinglyLinkedList::insertAtBack(int val) {
+    //create the new node with value val 
     Node* new_node = new Node(val, nullptr);
-    if (!head) {
+    if (!head) { //if SLL is empty 
         head = new_node;
     } else {
         Node* curr = head;
-        while (curr->next) {
+        while (curr->next) { //get to the back of the list 
             curr = curr->next;
         }
         curr->next = new_node;
     }
 }
 
-//inserts a new node at the front of the singly linked list 
+// inserts a new node at the front of the singly linked list
+// time complexity: O(1)
 SinglyLinkedList::Node* SinglyLinkedList::insertAtFront(int val) {
+    //create the new node whose next is the current head 
     Node* new_node = new Node(val, head);
-    head = newNode;
+    head = new_node;
     return head;
 }
 
-//inserts a new node after the specified location
+// inserts a new node after the specified location
+// time complexity: O(1)
 void SinglyLinkedList::insertAfter(int val, Node*& loc) {
+    //if the node loc does not exist, don't do anything 
     if (!loc) {
         return;
     }
@@ -32,7 +38,8 @@ void SinglyLinkedList::insertAfter(int val, Node*& loc) {
     loc->next = new_node;
 }
 
-//deletes node at the front of the singly linked list 
+// deletes node at the front of the singly linked list
+// time complexity: O(1)
 SinglyLinkedList::Node* SinglyLinkedList::deleteFront() {
     if (!head) { //nothing to delete 
         return nullptr;
@@ -45,8 +52,10 @@ SinglyLinkedList::Node* SinglyLinkedList::deleteFront() {
     return head; //(new head)
 }
 
-//deletes node at the back of the singly linked list 
-void SinglyLinkedList::deleteBack() {
+// deletes node at the back of the singly linked list
+// time complexity: O(N) where N is the # of nodes in the SLL; O(1) if only 1 node in SLL
+void SinglyLinkedList::deleteBack()
+{
     if (!head) {
         return;
     }
@@ -55,6 +64,7 @@ void SinglyLinkedList::deleteBack() {
         head = nullptr;
     }
     Node* curr = head;
+    //1 -> 2 -> 3
     while (curr->next->next != nullptr)
     {
         curr = curr->next;
@@ -64,23 +74,28 @@ void SinglyLinkedList::deleteBack() {
 }
 
 //deletes node at the specified location 
+//time complexity: O(N) where N is the number of nodes before loc; O(1) if loc is at the front of the list 
 SinglyLinkedList::Node* SinglyLinkedList::deleteNode(Node* loc) {
     if (!head || !loc) {
         return nullptr;
     } else if (loc == head) {
         deleteFront();
     }
+    //1 -> 2 -> 3 -> 4 and you want to delete 3; 3 = loc 
     Node* curr = head;
     while (curr->next != loc && curr != nullptr) {
         curr = curr->next;
     }
-    curr->next = loc->next;
+    curr->next = loc->next; //skip over the node you want to delete 
     delete loc;
+    loc = nullptr; 
     return head;
 }
 
 //deletes all the nodes in a singly linked list 
+//time complexity: O(N) where N is the # of nodes in the SLL
 SinglyLinkedList::~SinglyLinkedList() {
+    //1 -> 2 -> 3 
     Node* curr = head;
     while (curr != nullptr) {
         Node* saved_next = curr->next;
@@ -90,8 +105,10 @@ SinglyLinkedList::~SinglyLinkedList() {
     }
 }
 
-//returns the length of the singly linked list
+// returns the length of the singly linked list
+// time complexity: O(N) where N is the # of nodes in the SLL
 int SinglyLinkedList::length() {
+    //1 -> 2 -> 3
     int length = 0;
     Node* curr = head;
     while (curr != nullptr) {
@@ -101,19 +118,31 @@ int SinglyLinkedList::length() {
     return length;
 }
 
-//reverses the singly linked list iteratively 
+// reverses the singly linked list iteratively
+// time complexity: O(N) where N is the # of nodes in the SLL
 SinglyLinkedList::Node* SinglyLinkedList::reverseIterative() {
     if (!head|| !head->next) {
         return head;
     }
+    // 1 -> 2 -> 3
     Node* prev = nullptr;
     Node* curr = head;
-    Node* saved_next = nullptr;
     while (curr != nullptr) {
-        saved_next = curr->next;
+        Node* saved_next = curr->next;
         curr->next = prev;
         prev = curr;
         curr = saved_next;
     }
     return prev;
+}
+
+// time complexity: O(N) where N is the # of nodes in the SLL
+SinglyLinkedList::Node* SinglyLinkedList::reverseRecursive() {
+    if (!head || !head->next) {
+        return head;
+    }
+    Node* start = reverse(head->next);
+    start->next = head;
+    start->next = nullptr;
+    return node;
 }
