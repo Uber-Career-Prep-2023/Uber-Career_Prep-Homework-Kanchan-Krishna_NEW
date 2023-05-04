@@ -1,3 +1,6 @@
+#ifndef Q1SINGLYLINKEDLIST_HPP
+#define Q1SINGLYLINKEDLIST_HPP
+
 #include <bits/stdc++.h>
 using namespace std;
 class SinglyLinkedList {
