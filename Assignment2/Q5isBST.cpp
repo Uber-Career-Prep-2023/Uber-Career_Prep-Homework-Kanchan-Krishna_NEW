@@ -1,4 +1,10 @@
 #include <bits/stdc++.h>
+
+/*
+Time Taken: 20 min
+Space Complexity: O(1)
+Technique Used: Tree Recursion
+*/
 class Node {
     public:
         Node* left;

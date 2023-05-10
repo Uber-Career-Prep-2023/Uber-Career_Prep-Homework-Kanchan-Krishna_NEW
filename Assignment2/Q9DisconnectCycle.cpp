@@ -1,46 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
+// Given a singly linked list, disconnect the cycle, if one exists.
 
-struct Node {
-    int data;
-    Node* next;
+/*
+Time Taken: 25 min
+Space Complexity: O(1)
+Technique Used: Hash linked list nodes
+*/
+
+class Node {
+    public:
+        int data;
+        Node* next;
 };
 
-int removeCycle(Node* head_list) {
-    Node* slow = head_list;
-    Node* fast = head_list;
-    while (slow && fast && fast->next) {
-        slow = slow->next;
-        fast = fast->next->next;
-        if (slow == fast) {
-            removeLoop(slow, head_list);
-            return 1;
+//Time Complexity: O(N) where N is the number of nodes in the linked list 
+void disconnectCycle(Node* head) {
+    unordered_map<Node*, int> node_map;
+    Node* last = nullptr;
+    while (head != nullptr) {
+        if (node_map.find(head) == node_map.end()) {
+            node_map[head]++; //increase the freq count
+            last = head;
+            head = head->next;
+        } else {
+            last->next = nullptr;
+            break;
         }
     }
-    return 0;
 }
 
-void removeLoop(Node* start_loop, Node* head) {
-    Node* pointer1 = start_loop;
-    Node* pointer2 = start_loop;
-    unsigned int k = 1, i;
-    while (pointer1->next != pointer2)
-    {
-        pointer1 = pointer1->next;
-        k++;
+void printList(Node* head) {
+    while (head != nullptr) {
+        cout << " " << head->data << endl;
+        head = head->next;
     }
-    pointer1 = head;
-    pointer2 = head;
-    for (i = 0; i < k; i++) {
-        pointer2 = pointer2->next;
-    }
-    while (pointer2 != pointer1) {
-        pointer1 = pointer1->next;
-        pointer2 = pointer2->next;
-    }
+}
 
-    while (pointer2->next != pointer1) {
-        pointer2 = pointer2->next;
-    }
-    pointer2->next = NULL;
+int main() {
+    Node* head = new Node();
+    head->data = 6;
+    head->next = nullptr;
+    pushNode(head, 5);
+    pushNode(head, 4);
+    pushNode(head, 3);
+    pushNode(head, 3);
+    pushNode(head, 1);
+    pushNode(head, 0);
+    Node* cycle = new Node(); 
+    cycle->next = head; 
+    cycle->data = 10; 
+    printList(head); 
 }

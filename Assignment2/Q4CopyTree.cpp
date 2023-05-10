@@ -1,6 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+Time Taken: 10 min
+Space Complexity: O(n) where N is the # of nodes used
+Technique Used: Tree Recursion
+*/
+
 class Node {
     public:
         Node* left;

@@ -2,6 +2,12 @@
 #include <iostream>
 using namespace std;
 
+/*
+Time Taken: 30 min
+Space Complexity: O(n) where N is the # of nodes used
+Technique Used: Linked List Creation
+*/
+
 //time complexity: O(1) if you have reference to the head 
 Node* DoublyLinkedList::insertAtFront(Node* head, int val) {
     Node* curr = new Node;

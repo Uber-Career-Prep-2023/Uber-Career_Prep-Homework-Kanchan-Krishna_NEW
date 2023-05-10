@@ -1,6 +1,12 @@
 #include "Q1SinglyLinkedList.hpp"
 #include <bits/stdc++.h>
-using namespace std; 
+using namespace std;
+
+/*
+Time Taken: 30 min
+Space Complexity: O(n) where N is the # of nodes used 
+Technique Used: Linked List Creation
+*/
 
 //inserts a new node at the back of the singly linked list 
 //time complexity: O(N) where N is the # of nodes in the SLL; O(1) if only 1 node in SLL
