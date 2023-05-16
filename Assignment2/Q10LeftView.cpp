@@ -23,7 +23,7 @@ class Node {
 };
 
 // Time Complexity: O(N) where N is the number of nodes in the binary tree 
-void leftViewHelper(Node* root, int level, int max_level, vector<int>& v) {
+void leftViewHelper(Node* root, int& level, int& max_level, vector<int>& v) {
     if (root == nullptr) {
         return;
     }

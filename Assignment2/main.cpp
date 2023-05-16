@@ -33,6 +33,6 @@ int main()
     b.insert(2);
     b.insert(18);
     b.printTree(); 
-    b.deleteVal(10);
+    b.deleteNode(10);
     b.printTree();
 }

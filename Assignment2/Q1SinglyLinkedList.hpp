@@ -25,7 +25,7 @@ class SinglyLinkedList {
         Node* deleteNode(Node* loc);
         int length();
         Node* reverseIterative();
-        Node* reverseRecursive();
+        Node* reverseRecursive(Node* head);
     private:
         Node* head;
 };

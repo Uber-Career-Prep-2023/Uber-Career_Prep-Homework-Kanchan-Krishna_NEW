@@ -156,12 +156,12 @@ SinglyLinkedList::Node* SinglyLinkedList::reverseIterative() {
 }
 
 // time complexity: O(N) where N is the # of nodes in the SLL
-SinglyLinkedList::Node* SinglyLinkedList::reverseRecursive() {
-    if (!head || !head->next) {
+SinglyLinkedList::Node* SinglyLinkedList::reverseRecursive(Node* head) {
+    if (head == nullptr || head->next == nullptr) {
         return head;
     }
-    Node* start = reverse(head->next);
-    start->next = head;
-    start->next = nullptr;
-    return node;
+    Node* next_head = reverseRecursive(head->next);
+    head->next->next = head;
+    head->next = nullptr;
+    return next_head;
 }

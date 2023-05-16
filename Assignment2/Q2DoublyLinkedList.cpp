@@ -144,7 +144,7 @@ Node* DoublyLinkedList::reverseIterative(Node* head) {
         curr = curr->prev;
     }
     if (temp != nullptr) {
-        head_ref = temp->prev;
+        head = temp->prev;
     }
 }
 

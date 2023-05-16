@@ -53,7 +53,7 @@ int floorInBST(Node* root, int target) {
             return k;
         }
         else if (root->data > target) {
-            return findMaxforN(root->left, target);
+            return floorInBST(root->left, target);
         }
     }
 }

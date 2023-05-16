@@ -15,13 +15,12 @@ class BST {
         int min();
         int max();
         bool contains(int val);
-        void insert(int val);
-        int deleteVal(int val);
-        void printTree(Node *root); 
-    private:
-        Node* root;
-        Node* findMin(Node *node);
-        Node* insert(Node *node, int val);
-        Node* deleteVal(Node *node, int val);
-};
+        Node* insertBSTNode(Node* node, int val);
+        int findInorderSuccessor(Node* root);
+        int findInorderPredecessor(Node* root);
+        Node* deleteNode(Node *root, int &delete_this);
+        void printTree(Node* root);
+        private:
+            Node *root;
+        };
 #endif

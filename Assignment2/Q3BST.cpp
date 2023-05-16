@@ -10,60 +10,78 @@ Space Complexity: O(n) where N is the # of nodes used
 Technique Used: BST Creation
 */
 
-//Time Complexity: Worst case O(N) where N is the height of the tree
-int BST::min() {
-    if (root == nullptr) {
-        return -1; 
+// Time Complexity: Worst case O(N) where N is the height of the tree
+int BST::min()
+{
+    if (root == nullptr)
+    {
+        return -1;
     }
-    Node* curr = root;
-    while (curr->left != nullptr) {
+    Node *curr = root;
+    while (curr->left != nullptr)
+    {
         curr = curr->left;
     }
     return curr->val;
 }
 
 // Time Complexity: Worst case O(N) where N is the height of the tree
-int BST::max() {
-    if (root == nullptr) {
+int BST::max()
+{
+    if (root == nullptr)
+    {
         return -1;
     }
     Node *curr = root;
-    while (curr->right != nullptr) {
+    while (curr->right != nullptr)
+    {
         curr = curr->right;
     }
     return curr->val;
 }
 
 // Time Complexity: Worst case O(N) where N is the height of the tree if you are dealing with an unbalanced one
-bool BST::contains(int search_for) {
-    Node* curr = root;
-    while (curr != nullptr) {
-        if (curr->val == search_for) {
+bool BST::contains(int &search_for)
+{
+    Node *curr = root;
+    while (curr != nullptr)
+    {
+        if (curr->val == search_for)
+        {
             return true;
-        } else if (curr->val < search_for) {
+        }
+        else if (search_for < curr->val)
+        {
             curr = curr->left;
-        } else {
+        }
+        else
+        {
             curr = curr->right;
         }
     }
     return false;
 }
 
-//Time Complexity: O(h) where h is the height of a tree
-BST::Node* BST::insertBSTNode(Node *node, int val) {
-    if (node == nullptr) {
-        return nullptr; 
+// Time Complexity: O(h) where h is the height of a tree
+BST::Node *BST::insertBSTNode(Node *node, int val)
+{
+    if (node == nullptr)
+    {
+        return nullptr;
     }
-    if (val < node->data) {
+    if (val < node->data)
+    {
         node->left = insertBSTNode(node->left, val);
-    } else if (val > node->data) {
+    }
+    else if (val > node->data)
+    {
         node->right = insertBSTNode(node->right, val);
     }
     return node;
 }
 
 // Time Complexity: Worst case O(N) where N is the height of the tree
-BST::Node* BST::deleteNode(Node* root, int delete_this) {
+/*BST::Node* BST::deleteNode(Node* root, int delete_this) {
     if (root == nullptr) {
         return nullptr;
     } else {
@@ -99,6 +117,55 @@ BST::Node* BST::deleteNode(Node* root, int delete_this) {
         }
         return root;
     }
+}*/
+
+// trying again
+/*
+    - if you delete a leaf node, no problem just delete it because will not affect the rest of the tree
+    - if you delete a node with 2 children, choose the inorder successor or the inorder predecessor
+    - if you delete a node with one child (left or right), you can delete the node after replacing it with its left or right child
+*/
+
+int BST::findInorderSuccessor(Node* root)
+{
+    root = root->right;
+    while (root->left != nullptr)
+    {
+        root = root->left;
+    }
+    return root->val;
+}
+
+int BST::findInorderPredecessor(Node* root)
+{
+    root = root->left;
+    while (root->right != nullptr)
+    {
+        root = root->right;
+    }
+    return root->val;
+}
+
+BST::Node* BST::deleteNode(Node* root, int& delete_this) {
+    if (root == nullptr) {
+        return nullptr;
+    }
+    if (delete_this > root->val) {
+        root->right = deleteNode(root->right, delete_this);
+    } else if (delete_this < root->val)
+        root->left = deleteNode(root->left, delete_this);
+    else {
+        if (root->left == nullptr && root->right == nullptr) { //leaf node case 
+            root = nullptr;
+        } else if (root->right != nullptr) {
+            root->val = findInorderSuccessor(root);
+            root->right = deleteNode(root->right, root->val);
+        } else {
+            root->val = findInorderPredecessor(root);
+            root->left = deleteNode(root->left, root->val);
+        }
+    }
+    return root;
 }
 
 void BST::printTree(Node *root)
