@@ -19,98 +19,98 @@ Node* insertAtFront(Node* head, int d) {
     although, this function would work if the head is null because the next of insert_this would 
     just be null meaning there is one node in the SLL*/
     //allocate memory for the new node 
-	Node* insert_this = new Node;
-	insert_this->next = head;
-	insert_this->data = d;
-	return insert_this;
+    Node* insert_this = new Node;
+    insert_this->next = head; 
+    insert_this->data = d;
+    return insert_this;
 }
 
 //Time Complexity: O(N) where N is the # of nodes in the SLL & Space Complexity: O(1)
 void insertAtBack(Node* head, int d) {   
-	if (head == nullptr) {
-		return;
+    if (head == nullptr) {
+    	return;
     }
-	Node* insert_this = new Node;	
-	Node* curr = head;
+    Node* insert_this = new Node;	
+    Node* curr = head;
     //1 -> 2 -> 3 -> 4
-	while (curr->next != nullptr) { //traverse list to get to the end 
-		curr = curr->next; 
-	}
-	curr->next = insert_this; //new "tail"
-	insert_this->next = nullptr;
-	insert_this->data = d;
-	return;
+    while (curr->next != nullptr) { //traverse list to get to the end 
+	curr = curr->next; 
+    }
+    curr->next = insert_this; //new "tail"
+    insert_this->next = nullptr;
+    insert_this->data = d;
+    return;
 }
 
 //Time Complexity: O(1) because we have access to loc (if not null) & Space Complexity: O(1)
 //Assume loc is not nullptr 
 void insertAfter(Node* head, Node* loc, int d) {
-	if (head == nullptr) {
-		return;
+    if (head == nullptr) {
+	return;
     }
     //1 -> 2 -> 3 -> 4 and 3 is loc and insert 5 after loc 
     Node* insert_this = new Node;
-	insert_this->data = d;
-	insert_this->next = loc->next;
-	loc->next = insert_this;
-	return;
+    insert_this->data = d; 
+    insert_this->next = loc->next;
+    loc->next = insert_this; 
+    return;
 }
 
 //Time Complexity: O(1) & Space Complexity: O(1)
 Node* deleteFront(Node* head) {
-	if (head == nullptr) { //nothing to delete; don't want to delete memory that does not exist 
-		return head;
+    if (head == nullptr) { //nothing to delete; don't want to delete memory that does not exist 
+	return head;
     }
-	Node* curr_head = head; //save a reference to the current head here
-	if (curr_head->next == nullptr) { //only 1 node in the SLL
+    Node* curr_head = head; //save a reference to the current head here
+    if (curr_head->next == nullptr) { //only 1 node in the SLL
         delete head; 
-		head = nullptr;
+	head = nullptr;
     } else { //at least 2 nodes in the SLL 1 -> 2 -> 3 then delete memory allocated to 1 and move head
         delete head; 
-		head = curr_head->next; //why we saved a copy of it above 
+	head = curr_head->next; //why we saved a copy of it above 
     }
-	return head;
+    return head;
 } 
 
 //Time Complexity: O(N) where N is the # of nodes in the SLL & Space Complexity: O(1)
 void deleteBack(Node* head) {
-	if (head == nullptr) { //nothing to delete 
-		return;
+    if (head == nullptr) { //nothing to delete 
+	return;
     } else if (head->next == nullptr) { //only 1 node exists 
-		delete head;
+	delete head;
         head = nullptr; 
-		return;
-	}
-	Node* curr = head;
+	return;
+    }
+    Node* curr = head;
     //1 -> 2 -> 3
     while (curr->next->next != nullptr) {
         curr = curr->next;
     }
     delete curr->next;
     curr->next = nullptr;
-	return;
+    return;
 }
 
 //Time Complexity: O(N) where N is the # of nodes in the list & Space Complexity: O(1)
 Node* deleteNode(Node* head, Node* loc) {
-	if (head == nullptr) {
-		return head;
+    if (head == nullptr) {
+	return head;
     } else if (loc == head) {
-		head = head->next;
-		delete loc;
+	head = head->next;
+	delete loc;
         loc = nullptr; 
         return head; //new head
-	} else {
-		Node* prev = head;
+    } else {
+	Node* prev = head;
         //1 -> 2 -> 3 -> 4 and 3 is loc 
-		while (prev->next != loc) {
-			prev = prev->next;
-		}
-		prev->next = loc->next;
-		delete loc;
-        loc = nullptr;
+	while (prev->next != loc) {
+		prev = prev->next;
 	}
-	return head;
+	prev->next = loc->next;
+	delete loc;
+        loc = nullptr;
+    }
+    return head;
 }
 
 //Time Complexity: O(N) where N is the # of nodes in the SLL & Space Complexity: O(1)
@@ -158,21 +158,21 @@ Node* reverseIterative(Node* head) {
 
 //Time complexity: O(N) where N is the # of nodes in the SLL & Space Complexity: O(1)
 Node* reverseRecursiveHelper(Node* prev, Node* curr) {
-	if (curr->next == nullptr) {
-		curr->next = prev;
-		return curr;
-	}
-	Node* next_head = reverseRecursiveHelper(curr, curr->next);
+    if (curr->next == nullptr) {
 	curr->next = prev;
-	return next_head;
+	return curr;
+    }
+    Node* next_head = reverseRecursiveHelper(curr, curr->next);
+    curr->next = prev;
+    return next_head;
 }
 
 //Time complexity: O(N) where N is the # of nodes in the SLL & Space Complexity: O(1) 
 Node* reverseRecursive(Node* head) {
-	if (head == nullptr) {
-		return head;
+    if (head == nullptr) {
+	return head;
     }
-	return reverseRecursiveHelper(nullptr, head);
+    return reverseRecursiveHelper(nullptr, head);
 }
 
 int main() {
@@ -187,8 +187,8 @@ int main() {
 	head = reverseIterative(head);
 	printList(head);
 	cout << "" << endl;
-    deleteBack(head);
-    printList(head);
+        deleteBack(head);
+        printList(head);
 	cout << "" << endl;
 	cout << "Length: " << length(head) << endl; 
 	head = reverseRecursive(head);
