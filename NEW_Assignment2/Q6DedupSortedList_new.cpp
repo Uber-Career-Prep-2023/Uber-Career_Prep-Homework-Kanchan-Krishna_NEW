@@ -9,8 +9,8 @@ Technique Used: Linked List One Pointer
 
 //public by default 
 struct Node {
-	int data;
-	Node* next;
+    int data;
+    Node* next;
 };
 
 //Time Complexity: O(N) where N is the # of nodes in the linked list 
@@ -38,10 +38,10 @@ Node* insertAtFront(Node* head, int d) {
     although, this function would work if the head is null because the next of insert_this would 
     just be null meaning there is one node in the SLL*/
     //allocate memory for the new node 
-	Node* insert_this = new Node;
-	insert_this->next = head;
-	insert_this->data = d;
-	return insert_this;
+    Node* insert_this = new Node;
+    insert_this->next = head;
+    insert_this->data = d;
+    return insert_this;
 }
 
 void printList(Node* head) {
@@ -53,8 +53,8 @@ void printList(Node* head) {
 
 int main() {
     Node* head = nullptr; 	
-	cout << "Creating linked list" << endl; 
- 	head = insertAtFront(head, 5);
+    cout << "Creating linked list" << endl; 
+    head = insertAtFront(head, 5);
     head = insertAtFront(head, 4);
     head = insertAtFront(head, 3);
     head = insertAtFront(head, 2);
