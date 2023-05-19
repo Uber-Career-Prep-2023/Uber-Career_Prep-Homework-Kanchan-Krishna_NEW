@@ -9,8 +9,8 @@ Technique Used: DLL Two Pointers
 
 //public by default 
 struct Node {
-	int data;
-	Node* next;
+    int data;
+    Node* next;
     Node* prev; 
 };
 
@@ -38,11 +38,11 @@ bool isPalindrome(Node* l) {
 //Time Complexity: O(1) & Space Complexity: O(1)
 Node* insertAtFrontofDLL(Node* head, int d) {
     //assume the head exists and is not null
-	Node* insert_this = new Node;
-	insert_this->next = head;
+    Node* insert_this = new Node;
+    insert_this->next = head;
     insert_this->prev = nullptr; 
-	insert_this->data = d;
-	return insert_this;
+    insert_this->data = d;
+    return insert_this;
 }
 
 void printList(Node* head) {
@@ -54,8 +54,8 @@ void printList(Node* head) {
 
 int main() {
     Node* head = nullptr; 	
-	cout << "Creating doubly linked list" << endl; 
- 	head = insertAtFrontofDLL(head, 5);
+    cout << "Creating doubly linked list" << endl; 
+    head = insertAtFrontofDLL(head, 5);
     head = insertAtFrontofDLL(head, 4);
     head = insertAtFrontofDLL(head, 3);
     head = insertAtFrontofDLL(head, 4);
