@@ -156,7 +156,7 @@ Node* reverseIterative(Node* head) {
     return prev;
 }
 
-//Time complexity: O(N) where N is the # of nodes in the SLL & Space Complexity: O(1)
+//Time complexity: O(N) where N is the # of nodes in the SLL & Space Complexity: O(N) 
 Node* reverseRecursiveHelper(Node* prev, Node* curr) {
     if (curr->next == nullptr) {
 	curr->next = prev;
@@ -167,7 +167,7 @@ Node* reverseRecursiveHelper(Node* prev, Node* curr) {
     return next_head;
 }
 
-//Time complexity: O(N) where N is the # of nodes in the SLL & Space Complexity: O(1) 
+//Time complexity: O(N) where N is the # of nodes in the SLL & Space Complexity: O(N) 
 Node* reverseRecursive(Node* head) {
     if (head == nullptr) {
 	return head;
