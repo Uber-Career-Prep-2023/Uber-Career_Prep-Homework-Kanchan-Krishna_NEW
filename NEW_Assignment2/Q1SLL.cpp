@@ -176,21 +176,21 @@ Node* reverseRecursive(Node* head) {
 }
 
 int main() {
-	Node* head = nullptr; 	
-	cout << "Creating linked list" << endl; 
-	head = insertAtFront(head, 6);
-	insertAfter(head, head, 87);	
-	insertAfter(head, head, 12);	
-	head = insertAtFront(head, 10);
-	printList(head);
-	cout << "" << endl;
-	head = reverseIterative(head);
-	printList(head);
-	cout << "" << endl;
-        deleteBack(head);
-        printList(head);
-	cout << "" << endl;
-	cout << "Length: " << length(head) << endl; 
-	head = reverseRecursive(head);
-	printList(head);
+    Node* head = nullptr; 	
+    cout << "Creating linked list" << endl; 
+    head = insertAtFront(head, 6);
+    insertAfter(head, head, 87);	
+    insertAfter(head, head, 12);	
+    head = insertAtFront(head, 10);
+    printList(head);
+    cout << "" << endl;
+    head = reverseIterative(head);
+    printList(head);
+    cout << "" << endl;
+    deleteBack(head);
+    printList(head);
+    cout << "" << endl;
+    cout << "Length: " << length(head) << endl; 
+    head = reverseRecursive(head);
+    printList(head);
 }
