@@ -11,6 +11,7 @@ Time Complexity and Space Complexity are listed for each individual method
 struct Node {
 	int data;
 	Node* next;
+	Node* prev;
 };
 
 //Time Complexity: O(1) if you have reference to the head; Space Complexity: O(1)
@@ -46,7 +47,7 @@ void insertAtBack(Node* head, int val) {
 }
 
 // Time Complexity: O(N) where N is the number of nodes in the DLL; Space Complexity: O(1) 
-void insertAfter(Node* head, int val, Node* loc) {
+void insertAfter(Node* head, Node* loc, int val) {
     Node* curr = new Node;
     curr->data = val;
     Node* prev = nullptr;
@@ -151,6 +152,7 @@ Node* reverseIterative(Node* head) {
     if (temp != nullptr) {
         head = temp->prev;
     }
+    return head; 
 }
 
 //Time complexity: O(N) where N is the # of nodes in the DLL; Space Complexity: O(N)
