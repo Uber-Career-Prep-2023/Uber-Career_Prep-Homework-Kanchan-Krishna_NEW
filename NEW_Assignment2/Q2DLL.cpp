@@ -9,9 +9,9 @@ Time Complexity and Space Complexity are listed for each individual method
 
 //public by default 
 struct Node {
-	int data;
-	Node* next;
-	Node* prev;
+    int data;
+    Node* next;
+    Node* prev;
 };
 
 //Time Complexity: O(1) if you have reference to the head; Space Complexity: O(1)
@@ -172,10 +172,10 @@ Node* reverseRecursiveHelper(Node* head) {
 
 //Time complexity: O(N) where N is the # of nodes in the DLL; Space Complexity: O(N) 
 Node* reverseRecursive(Node* head){
-	if (head == nullptr) {
-		return head;
+    if (head == nullptr) {
+        return head;
     }
-	return reverseRecursiveHelper(head);
+    return reverseRecursiveHelper(head);
 }
 
 //time complexity: O(N) where N is the # of nodes in the DLL 
@@ -189,20 +189,20 @@ void printList(Node* head) {
 
 int main() {
     Node* head = nullptr; 	
-	cout << "Creating linked list" << endl; 
-	head = insertAtFront(head, 6);
-	insertAfter(head, head, 87);	
-	insertAfter(head, head, 12);	
-	head = insertAtFront(head, 10);
-	printList(head);
-	cout << "" << endl;
-	head = reverseIterative(head);
-	printList(head);
-	cout << "" << endl;
+    cout << "Creating linked list" << endl; 
+    head = insertAtFront(head, 6);
+    insertAfter(head, head, 87);	 
+    insertAfter(head, head, 12);	
+    head = insertAtFront(head, 10);
+    printList(head);
+    cout << "" << endl; 
+    head = reverseIterative(head);
+    printList(head);
+    cout << "" << endl;
     deleteBack(head);
     printList(head);
-	cout << "" << endl;
-	cout << "Length: " << length(head) << endl; 
-	head = reverseRecursive(head);
-	printList(head);
+    cout << "" << endl;
+    cout << "Length: " << length(head) << endl; 
+    head = reverseRecursive(head);
+    printList(head);
 }
