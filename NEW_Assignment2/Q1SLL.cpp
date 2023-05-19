@@ -104,7 +104,7 @@ Node* deleteNode(Node* head, Node* loc) {
 	Node* prev = head;
         //1 -> 2 -> 3 -> 4 and 3 is loc 
 	while (prev->next != loc) {
-		prev = prev->next;
+	    prev = prev->next;
 	}
 	prev->next = loc->next;
 	delete loc;
