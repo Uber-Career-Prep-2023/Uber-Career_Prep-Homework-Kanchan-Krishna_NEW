@@ -5,12 +5,15 @@ class MinHeap {
     private:
         vector<int> v;
     public:
+        // Time Complexity & Space Complexity: O(1)
         vector<int> returnHeap() {
             return v;
         }
+        // Time Complexity & Space Complexity: O(1)
         int top() {
             return v[0];
         }
+        // Time Complexity & Space Complexity: O(N) & O(1)
         void heapifyUp(int i) {
             int parent = (i - 1) / 2;
             while (i > 0 && v[parent] > v[i]) {
@@ -21,6 +24,7 @@ class MinHeap {
                 parent = (i - 1) / 2;
             }
         }
+        // Time Complexity & Space Complexity: O(log n) & O(1)
         void heapifyDown(int i) {
             int child = 2 * i + 1;
             if (child > v.size()) {
@@ -36,11 +40,13 @@ class MinHeap {
                 heapifyDown(child);
             }
         }
+        // Time Complexity & Space Complexity: O(1) but worst case O(log n)
         void insert(int val) {
             v.push_back(val);
             int curr_child = v.size() - 1;
             heapifyUp(curr_child);
         }
+        // Time Complexity & Space Complexity: O(log n) & O(1)
         void remove() {
             int temp = v[0];
             v[0] = v[v.size() - 1];

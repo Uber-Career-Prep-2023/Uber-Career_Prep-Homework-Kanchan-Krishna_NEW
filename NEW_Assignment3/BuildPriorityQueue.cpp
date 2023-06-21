@@ -5,12 +5,15 @@ class PriorityQueue {
     private:
         vector<pair<string, int>> v;
     public:
+        // Time Complexity & Space Complexity: O(1)
         vector<pair<string, int>> returnPQ() {
             return v;
         }
+        // Time Complexity & Space Complexity: O(1)
         pair<string, int> top() {
             return v[0];
         }
+        // Time Complexity & Space Complexity: O(log n) & O(1)
         void insert(string x, int weight) {
             pair<string, int> p = {x, weight};
             v.push_back(p);
@@ -21,6 +24,7 @@ class PriorityQueue {
                 idx = (idx - 1) / 2;
             }
         }
+        // Time Complexity & Space Complexity: O(1)
         void remove() {
             v[0] = v[v.size() - 1];
             v.resize(v.size() - 1);

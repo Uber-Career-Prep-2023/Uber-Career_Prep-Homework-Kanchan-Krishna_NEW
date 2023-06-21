@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//Time Complexity: O(E) where e is the # of edges
+//Space Complexity: O(V + E) where e is # of edges and v is # of vertices
 map<int, set<int>> buildAdjGraph(vector<pair<int, int>>& edges) {
     map<int, set<int>> adj;
     for (auto e : edges) {
@@ -9,6 +11,8 @@ map<int, set<int>> buildAdjGraph(vector<pair<int, int>>& edges) {
     return adj;
 }
 
+//Time Complexity: O(V + E)
+//Space Complexity: O(V)
 bool bfs(int val, map<int, set<int>> adj) {
     queue<int> q;
     q.push(adj.begin()->first);
@@ -32,6 +36,8 @@ bool bfs(int val, map<int, set<int>> adj) {
     return false;
 }
 
+// Time Complexity: O(V + E)
+// Space Complexity: O(V)
 bool dfs(int val, map<int, set<int>> adj) {
     set<int> visited_nodes;
     stack<int> st;
@@ -52,6 +58,8 @@ bool dfs(int val, map<int, set<int>> adj) {
     return visited_nodes.count(val) > 0;
 }
 
+// Time Complexity: O(V + E)
+// Space Complexity: O(V)
 void topologicalHelper(int curr, map<int, set<int>>& adj, stack<int>& visited_nodes, map<int, bool>& visited) {
     visited[curr] = true;
     for (auto neighbor : adj[curr]) {
