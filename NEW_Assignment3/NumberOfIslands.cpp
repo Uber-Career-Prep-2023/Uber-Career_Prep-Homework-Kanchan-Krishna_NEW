@@ -2,7 +2,7 @@
 
 /*
 Time Complexity: O(M*N)
-Space Complexity: O(min(M, N)) bc if all lands then queue size will grow up to min(M, N)
+Space Complexity: O(1) only storing the number of islands?
 Time Taken: 30 min
 Technique Used: BFS
 */

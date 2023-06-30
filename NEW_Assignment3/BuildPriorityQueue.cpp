@@ -27,7 +27,7 @@ class PriorityQueue {
         // Time Complexity & Space Complexity: O(1)
         void remove() {
             v[0] = v[v.size() - 1];
-            v.resize(v.size() - 1);
+            //v.resize(v.size() - 1);
             int idx = 0;
             int left = 0;
             int right = 0;

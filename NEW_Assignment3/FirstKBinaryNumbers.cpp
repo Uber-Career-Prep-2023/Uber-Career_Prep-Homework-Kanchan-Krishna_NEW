@@ -2,7 +2,7 @@
 
 /*
 Time Complexity: O(k)
-Space Complexity: O(k)
+Space Complexity: O(log k)
 Time Taken: 30 min
 Technique Used: Queue Technique 
 */

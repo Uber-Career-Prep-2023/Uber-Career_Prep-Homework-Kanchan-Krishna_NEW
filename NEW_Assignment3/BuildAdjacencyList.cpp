@@ -4,9 +4,9 @@ using namespace std;
 //Time Complexity: O(E) where e is the # of edges
 //Space Complexity: O(V + E) where e is # of edges and v is # of vertices
 map<int, set<int>> buildAdjGraph(vector<pair<int, int>>& edges) {
-    map<int, set<int>> adj;
+    map<int, vector<int>> adj;
     for (auto e : edges) {
-        adj[e.first].insert(e.second);
+        adj[e.first].push_back(e.second);
     }
     return adj;
 }
