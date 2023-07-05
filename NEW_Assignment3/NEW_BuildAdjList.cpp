@@ -28,6 +28,10 @@ vector<vector<int>> buildAdj(vector<pair<int, int>> edges)
     return adj;
 }
 
+bool bfs(int target, vector<vector<int>> graph);
+bool dfs(int target, vector<vector<int>> graph);
+vector<int> topologicalSort(vector<vector<int>> graph);
+
 int main()
 {
     vector<pair<int, int>> edges_list = {{1, 2}, {2, 3}, {1, 3}, {3, 2}, {2, 0}};
