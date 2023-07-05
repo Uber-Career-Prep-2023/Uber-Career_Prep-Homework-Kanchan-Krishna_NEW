@@ -8,14 +8,21 @@ Given an array of pairs of values representing edges in an unweighted graph, cre
 vector<vector<int>> buildAdj(vector<pair<int, int>> edges)
 {
     // cout << "Size of edges: " << edges.size() << endl;
-    vector<vector<int>> adj(edges.size());
+    // create a set of nodes (distinct)
+    set<int> nodes;
+    for (auto &e : edges)
+    {
+        nodes.insert({e.first});
+        nodes.insert({e.second});
+    }
+    vector<vector<int>> adj(nodes.size());
+    // 0 1 2 3 for a total of 4 edges
     for (auto &edge : edges)
     {
         int node_A = edge.first;
         int node_B = edge.second;
         cout << "Node A: " << node_A << " Node B: " << node_B << endl;
         adj[node_A].push_back(node_B);
-        adj[node_B].push_back(node_A);
     }
     cout << endl;
     return adj;
@@ -25,11 +32,12 @@ int main()
 {
     vector<pair<int, int>> edges_list = {{1, 2}, {2, 3}, {1, 3}, {3, 2}, {2, 0}};
     vector<vector<int>> adj = buildAdj(edges_list);
-    for (auto &edge : adj)
+    for (int i = 0; i < adj.size(); i++)
     {
-        for (auto &n : edge)
+        cout << "Neighbors of (i - curr node): " << i << " -> ";
+        for (int j = 0; j < adj[i].size(); j++)
         {
-            cout << "Node: " << n << " ";
+            cout << adj[i][j] << " ";
         }
         cout << endl;
     }
