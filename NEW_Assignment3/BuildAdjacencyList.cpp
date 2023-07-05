@@ -1,102 +1,97 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//Time Complexity: O(E) where e is the # of edges
-//Space Complexity: O(V + E) where e is # of edges and v is # of vertices
-map<int, set<int>> buildAdjGraph(vector<pair<int, int>>& edges) {
-    map<int, vector<int>> adj;
-    for (auto e : edges) {
-        adj[e.first].push_back(e.second);
+/*
+Given an array of pairs of values representing edges in an unweighted graph, create the equivalent adjacency list/set representation (a map from element to a list or set of elements). Pairs represent directed edges: (A, B) means there is an edge from A to B. If the pair (B, A) is also provided then there is an undirected edge between A and B. For simplicity, you may assume that each node of the graph stores an integer rather than a generic data type and that the elements are distinct. Implement a basic DFS and BFS searching for a target value and a topological sort (using either DFS or Kahn’s algorithm).
+*/
+
+vector<vector<int>> buildAdj(vector<pair<int, int>> edges)
+{
+    // cout << "Size of edges: " << edges.size() << endl;
+    // create a set of nodes (distinct)
+    set<int> nodes;
+    for (auto &e : edges)
+    {
+        nodes.insert({e.first});
+        nodes.insert({e.second});
     }
+    vector<vector<int>> adj(nodes.size());
+    // 0 1 2 3 for a total of 4 edges
+    for (auto &edge : edges)
+    {
+        int node_A = edge.first;
+        int node_B = edge.second;
+        cout << "Node A: " << node_A << " Node B: " << node_B << endl;
+        adj[node_A].push_back(node_B);
+    }
+    cout << endl;
     return adj;
 }
 
-//Time Complexity: O(V + E)
-//Space Complexity: O(V)
-bool bfs(int val, map<int, set<int>> adj) {
+bool bfs(int target, vector<vector<int>> graph, int start_node)
+{
+    set<int> nodes;
+    for (auto &e : edges)
+    {
+        nodes.insert({e.first});
+        nodes.insert({e.second});
+    }
+    vector<bool> visited(nodes.size(), false);
     queue<int> q;
-    q.push(adj.begin()->first);
-    set<int> visited_nodes;
-    visited_nodes.insert(adj.begin()->first);
-    while (!q.empty()) {
+    q.push(start_node);
+    visited[start] = true;
+    while (!q.empty())
+    {
         int curr = q.front();
         q.pop();
-        if (curr == val)
+        if (curr == target)
         {
             return true;
         }
-        for (auto neighbor : adj[curr]) { //now visit all of curr's neighbors
-            if (visited_nodes.find(neighbor) == visited_nodes.end())
+        for (auto &neighbor : graph[curr])
+        {
+            if (!visited[neigbor])
             {
-                q.push(neighbor);
-                visited_nodes.insert(neighbor);
+                q.push(neigbor);
+                visited[neighbor] = true;
             }
         }
     }
     return false;
 }
 
-// Time Complexity: O(V + E)
-// Space Complexity: O(V)
-bool dfs(int val, map<int, set<int>> adj) {
-    set<int> visited_nodes;
-    stack<int> st;
-    st.push(val);
-    while (!st.empty()) {
-        int curr = st.top();
-        st.pop();
-        if (visited_nodes.count(curr) > 0) { //ignore 
-            continue;
-        }
-        visited_nodes.insert(curr);
-        for (auto neighbor : adj[curr]) {
-            if (visited_nodes.count(neighbor) == 0) {
-                st.push(neighbor); //has not been processed yet
-            }
-        }
-    }
-    return visited_nodes.count(val) > 0;
-}
+bool dfs(int target, vector<vector<int>> graph);
+vector<int> topologicalSort(vector<vector<int>> graph);
 
-// Time Complexity: O(V + E)
-// Space Complexity: O(V)
-void topologicalHelper(int curr, map<int, set<int>>& adj, stack<int>& visited_nodes, map<int, bool>& visited) {
-    visited[curr] = true;
-    for (auto neighbor : adj[curr]) {
-        if (!visited[neighbor]) {
-            topologicalHelper(neighbor, adj, visited_nodes, visited);
-        }
-    }
-    visited_nodes.push(curr);
-}
-
-vector<int> topologicalSort(map<int, set<int>> adj) {
-    stack<int> visited_nodes;
-    map<int, bool> visited;
-    topologicalHelper(adj.begin()->first, adj, visited_nodes, visited);
-    vector<int> res;
-    while (!visited_nodes.empty())
-    {
-        res.push_back(visited_nodes.top());
-        visited_nodes.pop();
-    }
-    return res;
-}
-
-int main() {
+int main()
+{
     vector<pair<int, int>> edges_list = {{1, 2}, {2, 3}, {1, 3}, {3, 2}, {2, 0}};
-    map<int, set<int>> adj = buildAdjGraph(edges_list);
-    for (auto ele : adj) {
-        cout << ele.first << " ";
-        for (auto neighbor : ele.second) { //neighbors 
-            cout << neighbor << " ";
+    vector<vector<int>> adj = buildAdj(edges_list);
+    for (int i = 0; i < adj.size(); i++)
+    {
+        cout << "Neighbors of (i - curr node): " << i << " -> ";
+        for (int j = 0; j < adj[i].size(); j++)
+        {
+            cout << adj[i][j] << " ";
         }
-        cout << "" << endl;
+        cout << endl;
     }
-    cout << bfs(1, adj) << endl;
-    cout << dfs(1, adj) << endl;
-    vector<int> res = topologicalSort(adj);
-    for (auto ele : res) {
-        cout << ele << " ";
+    bool found_bfs = bfs(2, edges_list);
+    if (found_bfs)
+    {
+        cout << "Found the value" << endl;
+    }
+    else
+    {
+        cout << "Could not find value" << endl;
+    }
+    bool found_dfs = dfs(2, edges_list);
+    if (found_dfs)
+    {
+        cout << "Found the value" << endl;
+    }
+    else
+    {
+        cout << "Could not find value" << endl;
     }
 }
