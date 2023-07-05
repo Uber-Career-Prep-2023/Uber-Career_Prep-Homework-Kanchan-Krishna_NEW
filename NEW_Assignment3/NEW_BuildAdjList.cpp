@@ -20,8 +20,7 @@ int main() {
     vector<pair<int, int>> edges_list = {{1, 2}, {2, 3}, {1, 3}, {3, 2}, {2, 0}};
     vector<vector<int>> adj = buildAdj(edges_list);
     for (auto& edge : adj) {
-        cout << "Edge: " << edge; 
-        for (auto& n : v) {
+        for (auto& n : edge) {
             cout << "Node: " << n << " "; 
         }
         cout << endl;
