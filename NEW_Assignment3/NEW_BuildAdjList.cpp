@@ -28,7 +28,10 @@ vector<vector<int>> buildAdj(vector<pair<int, int>> edges)
     return adj;
 }
 
-bool bfs(int target, vector<vector<int>> graph);
+bool bfs(int target, vector<vector<int>> graph) {
+
+}
+
 bool dfs(int target, vector<vector<int>> graph);
 vector<int> topologicalSort(vector<vector<int>> graph);
 

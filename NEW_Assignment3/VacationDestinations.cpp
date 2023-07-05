@@ -4,7 +4,7 @@
 Time Complexity: O(V*E)
 Space Complexity: O(V*E)
 Time Taken: 40 min
-Technique Used: Keep track of the shortest distance 
+Technique Used: DFS (Multiple)
 */
 
 #include <bits/stdc++.h>
