@@ -6,7 +6,7 @@ Given an array of pairs of values representing edges in an unweighted graph, cre
 */
 
 vector<vector<int>> buildAdj(vector<pair<int, int>> edges) {
-    vector<vector<int>> adj; 
+    vector<vector<int>> adj(edges.size()); 
     for (auto& edge : edges) {
         int node_A = edge.first; 
         int node_B = edge.second;
