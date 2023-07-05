@@ -19,9 +19,11 @@ vector<vector<int>> buildAdj(vector<pair<int, int>> edges) {
 int main() {
     vector<pair<int, int>> edges_list = {{1, 2}, {2, 3}, {1, 3}, {3, 2}, {2, 0}};
     vector<vector<int>> adj = buildAdj(edges_list);
-    for (auto& v : adj) {
+    for (auto& edge : adj) {
+        cout << "Edge: " << edge; 
         for (auto& n : v) {
-            cout << n << endl;
+            cout << "Node: " << n << " "; 
         }
+        cout << endl;
     }
 }
