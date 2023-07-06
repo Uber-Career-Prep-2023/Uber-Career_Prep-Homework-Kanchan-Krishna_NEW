@@ -16,30 +16,36 @@ vector<vector<int>> buildAdj(vector<pair<int, int>> edges)
         nodes.insert({e.second});
     }
     vector<vector<int>> adj(nodes.size());
-    // 0 1 2 3 for a total of 4 edges
     for (auto &edge : edges)
     {
         int node_A = edge.first;
         int node_B = edge.second;
-        cout << "Node A: " << node_A << " Node B: " << node_B << endl;
+        // cout << "Node A: " << node_A << " Node B: " << node_B << endl;
         adj[node_A].push_back(node_B);
     }
-    cout << endl;
+    // cout << endl;
     return adj;
 }
 
-bool bfs(int target, vector<vector<int>> graph, int start_node)
+bool bfs(int target, int start_node, vector<pair<int, int>> edges)
 {
+    vector<vector<int>> graph = buildAdj(edges);
     set<int> nodes;
     for (auto &e : edges)
     {
         nodes.insert({e.first});
         nodes.insert({e.second});
     }
+    cout << "Printing set: " << endl;
+    for (auto &node : nodes)
+    {
+        cout << node << " ";
+    }
+    cout << endl;
     vector<bool> visited(nodes.size(), false);
     queue<int> q;
     q.push(start_node);
-    visited[start] = true;
+    visited[start_node] = true;
     while (!q.empty())
     {
         int curr = q.front();
@@ -50,9 +56,9 @@ bool bfs(int target, vector<vector<int>> graph, int start_node)
         }
         for (auto &neighbor : graph[curr])
         {
-            if (!visited[neigbor])
+            if (!visited[neighbor])
             {
-                q.push(neigbor);
+                q.push(neighbor);
                 visited[neighbor] = true;
             }
         }
@@ -60,7 +66,7 @@ bool bfs(int target, vector<vector<int>> graph, int start_node)
     return false;
 }
 
-bool dfs(int target, vector<vector<int>> graph);
+// bool dfs(int target, int start_node, vector<pair<int, int>> edges);
 vector<int> topologicalSort(vector<vector<int>> graph);
 
 int main()
@@ -76,7 +82,9 @@ int main()
         }
         cout << endl;
     }
-    bool found_bfs = bfs(2, edges_list);
+    cout << endl;
+    cout << "Using BFS to find node 2" << endl;
+    bool found_bfs = bfs(2, 0, edges_list);
     if (found_bfs)
     {
         cout << "Found the value" << endl;
@@ -85,13 +93,10 @@ int main()
     {
         cout << "Could not find value" << endl;
     }
-    bool found_dfs = dfs(2, edges_list);
-    if (found_dfs)
-    {
-        cout << "Found the value" << endl;
-    }
-    else
-    {
-        cout << "Could not find value" << endl;
-    }
+    // bool found_dfs = dfs(2, 0, edges_list);
+    // if (found_dfs) {
+    //     cout << "Found the value" << endl;
+    // } else {
+    //     cout << "Could not find value" << endl;
+    // }
 }
