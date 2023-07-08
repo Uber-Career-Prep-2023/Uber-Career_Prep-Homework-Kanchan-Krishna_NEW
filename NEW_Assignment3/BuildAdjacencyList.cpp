@@ -27,65 +27,113 @@ vector<vector<int>> buildAdj(vector<pair<int, int>> edges)
     return adj;
 }
 
-bool bfs(int target, int start_node, vector<pair<int, int>> edges)
-{
-    vector<vector<int>> graph = buildAdj(edges);
-    set<int> nodes;
-    for (auto &e : edges)
-    {
-        nodes.insert({e.first});
-        nodes.insert({e.second});
-    }
-    cout << "Printing set: " << endl;
-    for (auto &node : nodes)
-    {
-        cout << node << " ";
-    }
-    cout << endl;
-    vector<bool> visited(nodes.size(), false);
+bool bfs(vector<vector<int>> edges, int start_node, int target) {
+    int count = edges.size();
+    vector<bool> visited(count, false);
     queue<int> q;
-    q.push(start_node);
     visited[start_node] = true;
-    while (!q.empty())
-    {
+    q.push(start_node);
+    while (!q.empty()) {
         int curr = q.front();
         q.pop();
         if (curr == target)
         {
             return true;
         }
-        for (auto &neighbor : graph[curr])
+        for (int neighbor : edges[curr])
         {
-            if (!visited[neighbor])
-            {
-                q.push(neighbor);
+            if (!visited[neighbor]) {
                 visited[neighbor] = true;
+                q.push(neighbor);
             }
         }
     }
     return false;
 }
 
-// bool dfs(int target, int start_node, vector<pair<int, int>> edges);
-vector<int> topologicalSort(vector<vector<int>> graph);
+bool dfs(vector<vector<int>> edges, int start_node, int target, vector<bool>& visited) {
+    visited[start_node] = true;
+    if (start_node == target)
+    {
+        return true;
+    }
+    for (int neighbor : edges[start_node])
+    {
+        if (!visited[neighbor])
+        {
+            bool found = dfs(edges, neighbor, target, visited);
+            if (found)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
-int main()
-{
+bool dfsMain(vector<vector<int>> graph, int start_node, int target) {
+    int count = graph.size();
+    vector<bool> visited(count, false);
+    return dfs(graph, start_node, target, visited);
+}
+
+vector<int> topologicalSort(vector<vector<int>> edges) {
+    int count = edges.size();
+    vector<int> in_degree(count, 0);
+    vector<vector<int>> adj(count);
+    for (int i = 0; i < count; i++) {
+        for (int neighbor : edges[i])
+        {
+            ++in_degree[neighbor];
+            adj[i].push_back(neighbor);
+        }
+    }
+    queue<int> q;
+    for (int i = 0; i < count; ++i) {
+        if (in_degree[i] == 0)
+        {
+            q.push(i);
+        }
+    }
+    vector<int> res;
+    while (!q.empty()) {
+        int curr = q.front();
+        q.pop();
+        res.push_back(curr);
+        for (int neighbor : adj[curr]) {
+            --in_degree[neighbor];
+            if (in_degree[neighbor] == 0)
+            {
+                q.push(neighbor);
+            }
+        }
+    }
+    return res;
+}
+
+int main() {
     vector<pair<int, int>> edges_list = {{1, 2}, {2, 3}, {1, 3}, {3, 2}, {2, 0}};
     vector<vector<int>> adj = buildAdj(edges_list);
-    for (int i = 0; i < adj.size(); i++)
-    {
+    for (int i = 0; i < adj.size(); i++) {
         cout << "Neighbors of (i - curr node): " << i << " -> ";
-        for (int j = 0; j < adj[i].size(); j++)
-        {
+        for (int j = 0; j < adj[i].size(); j++) {
             cout << adj[i][j] << " ";
         }
         cout << endl;
     }
     cout << endl;
     cout << "Using BFS to find node 2" << endl;
-    bool found_bfs = bfs(2, 0, edges_list);
-    if (found_bfs)
+    int start_node = 0;
+    int find_val = 2;
+    bool found_bfs = bfs(adj, start_node, find_val);
+    if (found_bfs) {
+        cout << "Found the value" << endl;
+    } else {
+        cout << "Could not find value" << endl;
+    }
+    cout << "Using DFS to find node 2" << endl;
+    bool found_dfs = dfsMain(adj, start_node, find_val);
+    if (found_dfs)
     {
         cout << "Found the value" << endl;
     }
@@ -93,10 +141,9 @@ int main()
     {
         cout << "Could not find value" << endl;
     }
-    // bool found_dfs = dfs(2, 0, edges_list);
-    // if (found_dfs) {
-    //     cout << "Found the value" << endl;
-    // } else {
-    //     cout << "Could not find value" << endl;
-    // }
+    vector<int> res = topologicalSort(adj);
+    cout << "Topological Ordering: " << endl;
+    for (auto ele : res) {
+        cout << "Node: " << ele << endl;
+    }
 }
