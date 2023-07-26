@@ -19,9 +19,9 @@ int runningMedian(vector<int>& nums, int start, int end) {
     //constantly sort in ascending order -> maintain a minimum heap
     priority_queue<int, vector<int>, greater<int>> min_heap; 
     for (int i = start; i <= end; i++) {
-        pq.push(nums[i]);
+        min_heap.push(nums[i]);
     }
-    return findMiddleNum(min_heap)
+    return findMiddleNum(min_heap);
 }
 
 int main() {
