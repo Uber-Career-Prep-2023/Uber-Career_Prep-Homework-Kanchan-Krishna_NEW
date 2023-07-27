@@ -21,7 +21,7 @@ int main() {
     int coins[] = {2, 5, 10};
     int length = sizeof(coins) / sizeof(coins[0]);
     int target_sum = 20;
-    cout << " " << count(coins, length, target_sum);
+    cout << " " << coinChange(coins, length, target_sum);
     target_sum = 15;
-    cout << " " << count(coins, length, target_sum);
+    cout << " " << coinChange(coins, length, target_sum);
 }
