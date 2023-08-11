@@ -6,6 +6,7 @@ Trie::Trie() {
     root = new TrieNode();
 }
 
+//TC: O(N) where N is the length of the word
 void Trie::insert(string word) {
     TrieNode* curr = root;
     for (char letter : word) {
@@ -18,6 +19,7 @@ void Trie::insert(string word) {
     curr->validWord = true; //mark the end of a word
 }
 
+// TC: O(N) where N is the length of the word
 bool Trie::isValidWord(string word) {
     TrieNode* curr = search(word);
     if (curr && curr->validWord) {
@@ -26,6 +28,7 @@ bool Trie::isValidWord(string word) {
     return false;
 }
 
+// TC: O(N) where N is the length of the word
 TrieNode* Trie::search(string &word) {
     TrieNode* curr = root;
     for (char letter : word) {
@@ -38,6 +41,7 @@ TrieNode* Trie::search(string &word) {
     return curr;
 }
 
+// TC: O(N) where N is the length of the word
 void Trie::remove(string word) {
     removeHelper(root, word, 0);
 }
@@ -63,6 +67,7 @@ bool Trie::removeHelper(TrieNode *node, string &word, int depth) {
     return countNodes(node) == 0;
 }
 
+// TC: O(N) where N is the length of the children for the node
 int Trie::countNodes(TrieNode* node) {
     int count = 0;
     for (TrieNode* child : node->children) {

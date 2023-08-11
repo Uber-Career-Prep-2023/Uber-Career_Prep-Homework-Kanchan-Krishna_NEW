@@ -9,6 +9,9 @@ using namespace std;
 (difference between the two sizes should always be 1 to ensure you have a median)
 */
 
+//Time Complexity: O(log n)
+//Space Complexity: O(n)
+
 class FindMedian {
     public:
         priority_queue<int> max_heap;

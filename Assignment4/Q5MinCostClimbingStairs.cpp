@@ -10,6 +10,11 @@ n stairs, the last stair you step on can be either stair n-1 or n-2. Given an ar
 the costs per stair, what is the minimum possible toll you can pay to climb the staircase?
 */
 
+/*
+Time complexity: O(n)
+Space complexity: O(n)
+*/
+
 int minCostClimbingStairs(vector<int>& stair_cost) {
     stair_cost.push_back(0);
     for (int i = stair_cost.size() - 3; i >= 0; i--) {

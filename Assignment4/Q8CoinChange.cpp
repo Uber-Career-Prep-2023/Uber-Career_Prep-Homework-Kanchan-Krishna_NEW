@@ -4,6 +4,8 @@ using namespace std;
 //Given a list of coin denominations and a target sum, return the number of possible ways to 
 //make change for that sum.
 
+//Time Complexity: O(N * C), where N is the target value and C is the number of coins
+
 int coinChange(int coins[], int num_coins, int target_sum) {
     if (target_sum == 0) {
         return 1;
