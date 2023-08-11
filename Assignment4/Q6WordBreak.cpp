@@ -4,6 +4,9 @@ using namespace std;
 /*Given a string of characters without spaces and a dictionary of valid words, determine if it can be broken into a list of valid words by adding spaces. 
 */
 
+// Time Complexity: O(N) where N is the length of dict
+// Space Complexity: O(N)
+
 bool wordBreak(vector<string> dict, string input) {
     unordered_set<string> word;
     for (auto& i : dict) {

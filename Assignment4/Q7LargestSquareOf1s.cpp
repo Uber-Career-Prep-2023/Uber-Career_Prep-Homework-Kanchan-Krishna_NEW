@@ -1,7 +1,8 @@
 #include <bits/stdc++.h>
-using namespace std; 
+using namespace std;
 
-//Time Complexity: O(m x n) where m x n is the size of matrix
+// Time Complexity: O(m x n) where m x n is the size of matrix
+// Space Complexity: O(n) where n is the number of cols
 
 //Given a square matrix of 0s and 1s, find the dimension of the largest square consisting only of 1s.
 int largestSquaresOf1(vector<vector<char>>& matrix) {

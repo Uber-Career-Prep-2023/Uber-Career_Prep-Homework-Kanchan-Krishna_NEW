@@ -9,7 +9,8 @@ Given a Boggle board and a dictionary of valid words, return all valid
 words on the board.
 */
 
-// Time Complexity: O(N) where N is the length and width of the square board 
+// Time Complexity: O(N) where N is the length and width of the square board
+// Space Complexity: O(N) where N is the length and width of the square board
 
 class Boggle {
 public:

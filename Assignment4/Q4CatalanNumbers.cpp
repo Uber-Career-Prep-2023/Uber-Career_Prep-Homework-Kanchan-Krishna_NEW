@@ -5,6 +5,7 @@ as (2n)! / (n+1)!n!. Given a non-negative integer n, return the Catalan numbers 
 
 /*
 Time Complexity: O(N^2) for calculating catalan numbers for n numbers
+//Time Complexity: O(1)
 */
 
 int returnCatalanNumber(int num) {

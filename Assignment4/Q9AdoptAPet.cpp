@@ -5,7 +5,8 @@ using namespace std;
 An animal shelter that houses cats and dogs wants to ensure no pet has to wait too long for a forever home. Therefore, anyone who comes to adopt a pet can pick the species (cat or dog) but not the specific animal; they are assigned the animal of that species that has been in the shelter longest. If there are no animals available of the desired species, they must take the other species. You are given a list of pets in the shelter with their names, species, and time in the shelter at the start of a week. You receive a sequence of incoming people (to adopt pets) and animals (new additions to the shelter) one at a time. Print the names and species of the pets as they are adopted out.
 */
 
-//Time Complexity: O(N log N)
+// Time Complexity: O(N log N)
+// Space Complexity: O(N log N)
 
 void adoptAPet() {
     priority_queue<pair<int, string>, vector<pair<int, string>>> cat_list;
